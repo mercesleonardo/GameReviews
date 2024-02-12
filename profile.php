@@ -13,10 +13,10 @@
             <p class="profile-description">Bio do usuário</p>
             <p class="profile-description">O usuário ainda não escreveu nada aqui...</p>
         </div>
-        <div class="col-md-12 added-movies-container">
-          <h3>Filmes que enviou:</h3>
-          <div class="movies-container">
-          <div class="card movie-card">
+        <div class="col-md-12 added-games-container">
+          <h3>Jogos que enviou:</h3>
+          <div class="games-container">
+          <div class="card game-card">
             <div class="card-img-top"></div>
             <div class="card-body">
                 <p class="card-rating">
@@ -24,10 +24,10 @@
                     <span class="rating">9,5</span>
                 </p>
                 <h5 class="card-title">
-                    <a href="movie.php">Título</a>
+                    <a href="game.php">Título</a>
                 </h5>
-                <a href="movie.php" class="btn btn-primary rate-btn">Avaliar</a>
-                <a href="movie.php" class="btn btn-primary card-btn">Conhecer</a>
+                <a href="game.php" class="btn btn-primary rate-btn">Avaliar</a>
+                <a href="game.php" class="btn btn-primary card-btn">Conhecer</a>
             </div>
           </div>
               <p class="empty-list">O usuário ainda não enviou filmes.</p>

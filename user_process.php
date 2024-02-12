@@ -34,26 +34,20 @@ if ($type === "update") {
     $userData->lastname = $lastname;
     $userData->bio = $bio;
 
-    // upload image
+    // Upload image
     if(isset($_FILES["image"]) && $_FILES["image"]["tmp_name"]) {
 
         $image = $_FILES["image"];
-        $imageTypes = ["image/jpeg", "image/png", "image/gif", "image/jpg"];
+        $imageTypes = ["image/jpeg", "image/png", "image/jpg"];
         $imageArray = ["image/jpeg", "image/jpg"];
-        $imageGif = ["image/gif"];
 
-        //check image types
+        // Checking the image type
         if(in_array($image["type"], $imageTypes)) {
 
             // If image type is jpeg or jpg
             if(in_array($image["type"], $imageArray)) {
 
                 $imageFile = imagecreatefromjpeg($image["tmp_name"]);
-            
-            // If image type is gif
-            } else if(in_array($image["type"], $imageGif)) {
-
-                $imageFile = imagecreatefromgif($image["tmp_name"]);
             
             // Image is png    
             } else {
@@ -75,6 +69,7 @@ if ($type === "update") {
 
             }
 
+            //Generating the image name
             $imageName = $user->imageGenerateName();
 
             imagejpeg($imageFile, "./img/users/" . $imageName, 100);
@@ -83,7 +78,7 @@ if ($type === "update") {
 
         } else {
 
-            $message->setMessage("Tipo inválido de imagem, insira png, gif ou jpg!", "error", "back");
+            $message->setMessage("Tipo inválido de imagem, insira png ou jpg!", "error", "back");
 
         }
 
@@ -103,7 +98,7 @@ if ($type === "update") {
 
     $id = $userData->id;
 
-    // Check if password is correct
+    // Checking if password is correct
     if($password === $confirmpassword) {
 
         // Create a new user object

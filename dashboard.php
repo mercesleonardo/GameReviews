@@ -4,13 +4,13 @@
 ?>
   <div id="main-container" class="container-fluid">
     <h2 class="section-title">Dashboard</h2>
-    <p class="section-description">Adicione ou atualize as informações dos filmes que você enviou</p>
-    <div class="col-md-12" id="add-movie-container">
-      <a href="newmovie.php" class="btn card-btn">
+    <p class="section-description">Adicione ou atualize as informações dos jogos que você enviou</p>
+    <div class="col-md-12" id="add-game-container">
+      <a href="newgame.php" class="btn card-btn">
         <i class="fas fa-plus"></i> Adicionar Filme
       </a>
     </div>
-    <div class="col-md-12" id="movies-dashboard">
+    <div class="col-md-12" id="games-dashboard">
       <table class="table">
         <thead>
           <th scope="col">#</th>
@@ -21,13 +21,13 @@
         <tbody>
             <tr>
               <td scope="row"></td>
-              <td><a href="movie.php" class="table-movie-title">Título</a></td>
+              <td><a href="game.php" class="table-game-title">Título</a></td>
               <td><i class="fas fa-star"></i>9</td>
               <td class="actions-column">
-                <a href="editmovie.php" class="edit-btn">
+                <a href="editgame.php" class="edit-btn">
                   <i class="far fa-edit"></i> Editar
                 </a>
-                <form action="movie_process.php" method="POST">
+                <form action="game_process.php" method="POST">
                   <input type="hidden" name="type" value="delete">
                   <input type="hidden" name="id" value="">
                   <button type="submit" class="delete-btn">

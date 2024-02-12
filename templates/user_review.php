@@ -17,7 +17,7 @@
     </div>
     <div class="col-md-12">
       <p class="comment-title">Comentário:</p>
-      <p>Comentário do filme</p>
+      <p>Comentário do jogo</p>
     </div>
   </div>
 </div>

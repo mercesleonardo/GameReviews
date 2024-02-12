@@ -8,7 +8,7 @@
         <div class="col-md-6 offset-md-1">
           <h1>Título</h1>
           <p class="page-description">Altere os dados do filme no fomrulário abaixo:</p>
-          <form id="edit-movie-form" action="movie_process.php" method="POST" enctype="multipart/form-data">
+          <form id="edit-game-form" action="game_process.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="type" value="update">
             <input type="hidden" name="id" value="">
             <div class="form-group">
@@ -47,7 +47,7 @@
           </form>
         </div>
         <div class="col-md-3">
-          <div class="movie-image-container"></div>
+          <div class="game-image-container"></div>
         </div>
       </div>
     </div>

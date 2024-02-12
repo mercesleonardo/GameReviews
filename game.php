@@ -4,9 +4,9 @@
 ?>
 <div id="main-container" class="container-fluid">
   <div class="row">
-    <div class="offset-md-1 col-md-6 movie-container">
+    <div class="offset-md-1 col-md-6 game-container">
       <h1 class="page-title">Title</h1>
-      <p class="movie-details">
+      <p class="game-details">
         <span>Duração: 3h</span>
         <span class="pipe"></span>
         <span>Categoria</span>
@@ -17,7 +17,7 @@
       <p>Descrição do filme</p>
     </div>
     <div class="col-md-4">
-      <div class="movie-image-container"></div>
+      <div class="game-image-container"></div>
     </div>
     <div class="offset-md-1 col-md-10" id="reviews-container">
       <h3 id="reviews-title">Avaliações:</h3>
@@ -26,7 +26,7 @@
             <p class="page-description">Preencha o formulário com a nota e comentário sobre o filme</p>
             <form action="review_process.php" id="review-form" method="POST">
             <input type="hidden" name="type" value="create">
-            <input type="hidden" name="movies_id" value="">
+            <input type="hidden" name="games_id" value="">
             <div class="form-group">
                 <label for="rating">Nota do filme:</label>
                 <select name="rating" id="rating" class="form-control">
