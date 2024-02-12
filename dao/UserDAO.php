@@ -79,18 +79,53 @@ class UserDao implements UserDAOInterface {
 
     }
 
+    // Logout the user and redirect to index.php
     public function destroyToken() {
+        
+        // Remove the token from the session
+        $_SESSION["token"] = "";
 
+        $this->message->setMessage("Você fez o logout com sucesso!", "success", "index.php");
 
     }
 
     public function changePassword(User $user) {
 
+        $stmt = $this->conn->prepare("UPDATE users SET password = :password Where id = :id");
+        
+        $stmt->bindParam(":password", $user->password);
+        $stmt->bindParam(":id", $user->id);
+
+        $stmt->execute();
+
+        $this->message->setMessage("Senha atualizado com sucesso!", "success", "editprofile.php");
 
     }
 
     public function verifyToken($protected = false) {
 
+        if(!empty($_SESSION["token"])) {
+
+            // Get the token from the session
+            $token = $_SESSION["token"];
+
+            $user = $this->findByToken($token);
+
+            if($user) {
+
+                return $user;
+
+            } else if($protected) {
+
+                $this->message->setMessage("Faça a autenticação para acessar esta página!", "error", "index.php");
+
+            }
+
+        } else if($protected) {
+
+            $this->message->setMessage("Faça a autenticação para acessar esta página!", "error", "index.php");
+
+        }        
 
     }
 
@@ -182,6 +217,33 @@ class UserDao implements UserDAOInterface {
 
     public function findByToken($token) {
 
+        if($token != "") {
+
+            $stmt = $this->conn->prepare("SELECT * FROM users WHERE token = :token");
+
+            $stmt->bindParam(":token", $token);
+
+            $stmt->execute();
+
+            if($stmt->rowCount() > 0) {
+
+                $data = $stmt->fetch();
+
+                $user = $this->buildUser($data);
+
+                return $user;
+
+            } else {
+
+                return false;
+
+            }
+
+        } else {
+
+            return false;
+
+        }
 
     }
 
