@@ -1,32 +1,77 @@
 <?php
+
   require_once("templates/header.php");
+  require_once("models/Game.php");
+  require_once("dao/GameDAO.php");
+
+  $id = filter_input(INPUT_GET, "id");
+
+  $game;
+
+  $gameDao = new GameDAO($conn, $BASE_URL);
+
+  if(empty($id)) {
+
+    $message->setMessage("O jogo não foi encontrado!", "error", "index.php");
+
+  } else {
+
+    $game = $gameDao->findById($id);
+
+    // Checking if the game exists
+    if(!$game) {
+
+      $message->setMessage("O jogo não foi encontrado!", "error", "index.php");
+
+    }
+
+  }
+
+  // Checking if the game has an image
+  if($game->image == "") {
+
+    $game->image = "game_cover.jpg";
+
+  }
+
+  // Checking if the game belongs to the user
+  $userOwnsGame = false;
+
+  if(!empty($userData)) {
+
+    if($userData->id === $game->users_id) {
+
+      $userOwnsGame = true;
+
+    }
+
+  }
 
 ?>
 <div id="main-container" class="container-fluid">
   <div class="row">
     <div class="offset-md-1 col-md-6 game-container">
-      <h1 class="page-title">Title</h1>
+      <h1 class="page-title"><?= $game->title ?></h1>
       <p class="game-details">
-        <span>Duração: 3h</span>
         <span class="pipe"></span>
-        <span>Categoria</span>
+        <span><?= $game->category ?></span>
         <span class="pipe"></span>
         <span><i class="fas fa-star"></i> 10</span>
       </p>
-      <iframe src="" width="560" height="315" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encryted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      <p>Descrição do filme</p>
+      <iframe src="<?= $game->trailer ?>" width="560" height="315" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encryted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <p><?= $game->description ?></p>
     </div>
     <div class="col-md-4">
-      <div class="game-image-container"></div>
+      <div class="game-image-container" style="background-image: url('<?= $BASE_URL ?>img/games/<?= $game->image ?>')"></div>
     </div>
     <div class="offset-md-1 col-md-10" id="reviews-container">
       <h3 id="reviews-title">Avaliações:</h3>
         <div class="col-md-12" id="review-form-container">
             <h4>Envie sua avaliação:</h4>
             <p class="page-description">Preencha o formulário com a nota e comentário sobre o filme</p>
-            <form action="review_process.php" id="review-form" method="POST">
+            <form action="<?= $BASE_URL ?>review_process.php" id="review-form" method="POST">
             <input type="hidden" name="type" value="create">
-            <input type="hidden" name="games_id" value="">
+            <input type="hidden" name="games_id" value="<?= $game->id ?>">
             <div class="form-group">
                 <label for="rating">Nota do filme:</label>
                 <select name="rating" id="rating" class="form-control">
@@ -73,5 +118,7 @@
   </div>
 </div>
 <?php
+
   require_once("templates/footer.php");
+  
 ?>
