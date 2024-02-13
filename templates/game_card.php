@@ -17,7 +17,7 @@
             <span class="rating">10</span>
         </p>
         <h5 class="card-title">
-            <a href="<?= $BASE_URL ?>game.php"><?= $game->title ?></a>
+            <a href="<?= $BASE_URL ?>game.php?id=<?= $game->id ?>"><?= $game->title ?></a>
         </h5>
         <a href="<?= $BASE_URL ?>game.php?id=<?= $game->id ?>" class="btn btn-primary rate-btn">Avaliar</a>
         <a href="<?= $BASE_URL ?>game.php?id=<?= $game->id ?>" class="btn btn-primary card-btn">Conhecer</a>
