@@ -26,7 +26,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GameReview</title>
+    <title>GameReviews</title>
     <link rel="short icon" href="<?= $BASE_URL ?>img/videogame.ico" />
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.css" integrity="sha512-drnvWxqfgcU6sLzAJttJv7LKdjWn0nxWCSbEAtxJ/YYaZMyoNLovG7lPqZRdhgL1gAUfa+V7tbin8y+2llC1cw==" crossorigin="anonymous" />
@@ -40,13 +40,13 @@
         <nav id="main-navbar" class="navbar navbar-expand-lg">
             <a href="<?= $BASE_URL ?>" class="navbar-brand">
                 <img src="<?= $BASE_URL ?>img/logo.svg" alt="GameReview" id="logo">
-                <span id="gamereview-title">GameReview</span>
+                <span id="gamereview-title">GameReviews</span>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
             <form action="<?= $BASE_URL ?>search.php" method="GET" id="search-form" class="form-inline my-2 my-lg-0">
-                <input type="text" name="q" id="search" class="form-control mr-sm-2" type="search" placeholder="Buscar Filmes" aria-label="Search">
+                <input type="text" name="q" id="search" class="form-control mr-sm-2" type="search" placeholder="Buscar Jogos" aria-label="Search">
                 <button class="btn my-2 my-sm-0" type="submit">
                     <i class="fas fa-search"></i>
                 </button>
@@ -55,12 +55,12 @@
                 <ul class="navbar-nav">
                     <?php if($userData): ?>
                         <li class="nav-item">
-                            <a href="<?= $BASE_URL ?>newmovie.php" class="nav-link">
-                                <i class="far fa-plus-square"></i> Incluir filme
+                            <a href="<?= $BASE_URL ?>newgame.php" class="nav-link">
+                                <i class="far fa-plus-square"></i> Incluir jogo
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= $BASE_URL ?>dashboard.php" class="nav-link">Meus filmes</a>
+                            <a href="<?= $BASE_URL ?>dashboard.php" class="nav-link">Meus jogos</a>
                         </li>
                         <li class="nav-item">
                             <a href="<?= $BASE_URL ?>editprofile.php" class="nav-link bold"><?= $userData->name ?></a>

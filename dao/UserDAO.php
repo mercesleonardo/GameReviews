@@ -131,7 +131,7 @@ class UserDao implements UserDAOInterface {
 
     public function setTokenToSession($token, $redirect = true) {
 
-        // Salve token in session
+        // Save token in session
         $_SESSION["token"] = $token;
 
         if($redirect) {
@@ -149,7 +149,7 @@ class UserDao implements UserDAOInterface {
 
         if($user) {
 
-            // Check is password is correct
+            // Checking if the password is correct
             if(password_verify($password, $user->password)) {
 
                 // Build a token and insert into session
@@ -157,7 +157,7 @@ class UserDao implements UserDAOInterface {
 
                 $this->setTokenToSession($token, false);
 
-                // update user token
+                // Update user token
                 $user->token = $token;
 
                 $this->update($user, false);
@@ -212,6 +212,32 @@ class UserDao implements UserDAOInterface {
 
     public function findById($id) {
 
+        if($id != "") {
+
+            $stmt = $this->conn->prepare("SELECT * FROM users WHERE id = :id");
+    
+            $stmt->bindParam(":id", $id);
+    
+            $stmt->execute();
+    
+            if($stmt->rowCount() > 0) {
+    
+                $data = $stmt->fetch();
+                $user = $this->buildUser($data);
+                
+                return $user;
+    
+            } else {
+
+                return false;
+
+            }
+    
+        } else {
+
+            return false;
+                
+        }
 
     }
 

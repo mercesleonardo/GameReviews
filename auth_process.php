@@ -7,7 +7,6 @@ require_once("models/Message.php");
 require_once("dao/UserDAO.php");
 
 $message = new Message($BASE_URL);
-
 $userDao = new UserDAO($conn, $BASE_URL);
 
 // Get the form type
@@ -22,13 +21,13 @@ if ($type === "register") {
     $password = filter_input(INPUT_POST, "password");
     $confirmpassword = filter_input(INPUT_POST, "confirmpassword");
 
-    // Minimum data check
+    // Minimal data verification
     if($email && $name && $lastname && $password) {
 
-        // Check if passwords match
+        // Checking that passwords match
         if($password === $confirmpassword) {
 
-            // Check if email only exists in the database
+            // Checking if the email exists in the database
             if($userDao->findByEmail($email) === false) {
 
                 $user = new User();
