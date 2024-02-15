@@ -11,7 +11,7 @@ O projeto **GameReviews** é uma plataforma interativa que permite aos usuários
     - Cada crítica inclui informações como título do jogo, plataforma, data da análise, texto da crítica e pontuação (nota).
 
 3. **Avaliação de Jogos**:
-    - Os usuários podem atribuir uma nota (de 1 a 5 estrelas) aos jogos.
+    - Os usuários podem atribuir uma nota (de 1 a 10 estrelas) aos jogos.
     - As avaliações são usadas para calcular a média de pontuação de cada jogo.
 
 4. **Pesquisa e Filtragem**:
