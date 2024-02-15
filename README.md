@@ -33,4 +33,4 @@ O projeto **GameReviews** é uma plataforma interativa que permite aos usuários
     - **Observer**: Para notificar os usuários sobre novas críticas.
     - **Singleton**: Para gerenciar a conexão com o banco de dados.
       
-![capa](https://github.com/mercesleonardo/GameReviews/assets/104258969/9d358b01-2918-44ac-9dce-177b7205eb95)
+<img src="https://github.com/mercesleonardo/GameReviews/assets/104258969/9d358b01-2918-44ac-9dce-177b7205eb95" />
