@@ -1,6 +1,6 @@
 <?php
 
-$db_name = "gamereviews";
+$db_name = "gamereview";
 $db_host = "localhost";
 $db_user = "root";
 $db_pass = "";

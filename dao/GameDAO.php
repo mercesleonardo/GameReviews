@@ -2,6 +2,7 @@
 
 require_once("models/Game.php");
 require_once("models/Message.php");
+require_once("dao/ReviewDAO.php");
 
 class GameDAO implements GameDAOInterface {
 
@@ -20,18 +21,24 @@ class GameDAO implements GameDAOInterface {
     public function buildGame($data) {
 
         $game = new Game();
-
-        $game->id = $data['id'];
-        $game->title = $data['title'];
-        $game->description = $data['description'];
-        $game->image = $data['image'];
-        $game->trailer = $data['trailer'];
-        $game->category = $data['category'];
-        $game->users_id = $data['users_id'];
-
+  
+        $game->id = $data["id"];
+        $game->title = $data["title"];
+        $game->description = $data["description"];
+        $game->image = $data["image"];
+        $game->trailer = $data["trailer"];
+        $game->category = $data["category"];
+        $game->users_id = $data["users_id"];
+  
+        $reviewDao = new ReviewDao($this->conn, $this->url);
+  
+        $rating = $reviewDao->getRatings($game->id);
+  
+        $game->rating = $rating;
+  
         return $game;
-
-    }
+  
+      }
 
     public function create(Game $game) {
 
@@ -111,82 +118,104 @@ class GameDAO implements GameDAOInterface {
 
     public function findByTitle($title) {
 
-    }
+        $games = [];
+  
+        $stmt = $this->conn->prepare("SELECT * FROM games WHERE title LIKE :title");
+  
+        $stmt->bindValue(":title", '%'.$title.'%');
+  
+        $stmt->execute();
+  
+        if($stmt->rowCount() > 0) {
+  
+            $gamesArray = $stmt->fetchAll();
+    
+            foreach($gamesArray as $game) {
+
+                $games[] = $this->buildGame($game);
+
+            }
+  
+        }
+  
+        return $games;
+  
+      }
 
     public function getLatestGames() {
 
         $games = [];
-
-        $stmt = $this->conn->prepare("SELECT * FROM games ORDER BY id DESC LIMIT 10");
-
+  
+        $stmt = $this->conn->query("SELECT * FROM games ORDER BY id DESC");
+  
         $stmt->execute();
-
+  
         if($stmt->rowCount() > 0) {
-
+  
             $gamesArray = $stmt->fetchAll();
-
+    
             foreach($gamesArray as $game) {
 
                 $games[] = $this->buildGame($game);
 
             }
-
-            return $games;
-
+  
         }
-
-    }
+  
+        return $games;
+  
+      }
 
     public function getGamesByCategory($category) {
 
-        $games = [];
+      $games = [];
 
-        $stmt = $this->conn->prepare("SELECT * FROM games WHERE category = :category ORDER BY id DESC");
+      $stmt = $this->conn->prepare("SELECT * FROM games WHERE category = :category ORDER BY id DESC");
 
-        $stmt->bindParam(":category", $category);
+      $stmt->bindParam(":category", $category);
 
-        $stmt->execute();
+      $stmt->execute();
 
-        if($stmt->rowCount() > 0) {
+      if($stmt->rowCount() > 0) {
 
-            $gamesArray = $stmt->fetchAll();
+        $gamesArray = $stmt->fetchAll();
 
-            foreach($gamesArray as $game) {
+        foreach($gamesArray as $game) {
 
-                $games[] = $this->buildGame($game);
-
-            }
-
-            return $games;
+            $games[] = $this->buildGame($game);
 
         }
+
+      }
+
+      return $games;
 
     }
 
     public function getGamesByUserId($id) {
 
         $games = [];
-
-        $stmt = $this->conn->prepare("SELECT * FROM games WHERE users_id = :users_id ORDER BY id DESC");
-
+  
+        $stmt = $this->conn->prepare("SELECT * FROM games WHERE users_id = :users_id");
+  
         $stmt->bindParam(":users_id", $id);
-
+  
         $stmt->execute();
-
-        if ($stmt->rowCount() > 0) {
-
+  
+        if($stmt->rowCount() > 0) {
+  
             $gamesArray = $stmt->fetchAll();
-
-            foreach ($gamesArray as $game) {
+    
+            foreach($gamesArray as $game) {
 
                 $games[] = $this->buildGame($game);
 
             }
-
-            return $games;
-
+  
         }
-
-    }
+  
+        return $games;
+  
+      }
 
 }

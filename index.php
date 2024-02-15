@@ -8,6 +8,7 @@
     $latestGames = $gameDao->getLatestGames();
     $actionAndAdventuresGames = $gameDao->getGamesByCategory("Ação e Aventura");
     $sportsGames = $gameDao->getGamesByCategory("Esportes");
+    $battleRoyaleGames = $gameDao->getGamesByCategory("Battle Royale");
 
 ?>
     <div id="main-container" class="container-fluid">
@@ -41,6 +42,17 @@
                 <?php require("templates/game_card.php"); ?>
             <?php endforeach; ?>
             <?php if(count($sportsGames) === 0): ?>
+                <p class="empty-list">Ainda não há jogos cadastrados</p>
+            <?php endif; ?>
+        </div>
+
+        <h2 class="section-title">Battle Royale</h2>
+        <p class="section-description"> Veja os melhores jogos de Battle Royale </p>
+        <div class="games-container">
+            <?php foreach ($battleRoyaleGames as $game): ?>
+                <?php require("templates/game_card.php"); ?>
+            <?php endforeach; ?>
+            <?php if(count($battleRoyaleGames) === 0): ?>
                 <p class="empty-list">Ainda não há jogos cadastrados</p>
             <?php endif; ?>
         </div>

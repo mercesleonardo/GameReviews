@@ -7,14 +7,12 @@
     }
 
 ?>
-
 <div class="card game-card">
     <div class="card-img-top" style="background-image: url('<?= $BASE_URL ?>img/games/<?= $game->image ?>')"></div>
     <div class="card-body">
         <p class="card-rating">
             <i class="fas fa-star"></i>
-            <!-- <span class="rating"><?= $game->rating ?></span> -->
-            <span class="rating">10</span>
+            <span class="rating"><?= $game->rating ?></span>
         </p>
         <h5 class="card-title">
             <a href="<?= $BASE_URL ?>game.php?id=<?= $game->id ?>"><?= $game->title ?></a>

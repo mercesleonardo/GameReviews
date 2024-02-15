@@ -1,22 +1,36 @@
+<?php
+
+    require_once("dao/UserDAO.php");
+
+    $userDao = new UserDAO($conn, $BASE_URL);
+
+    $userData = $userDao->verifyToken(false);
+
+?>
+
 <footer id="footer">
         <div id="social-container">
             <ul>
                 <li>
-                    <a href="#"><i class="fab fa-facebook-square"></i></a>
+                    <a href="https://www.linkedin.com/in/mercesleonardo/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                </li>                
+                <li>
+                    <a href="https://www.youtube.com/@mercesleonardo" target="_blank"><i class="fab fa-youtube"></i></a>
                 </li>
                 <li>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                </li>
-                <li>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="https://github.com/mercesleonardo" target="_blank"><i class="fab fa-github"></i></a>
                 </li>
             </ul>
         </div>
         <div id="footer-links-container">
             <ul>
-                <li><a href="#">Adicionar jogo</a></li>
-                <li><a href="#">Adicionar crítica</a></li>
-                <li><a href="#">Entrar / Registrar</a></li>
+                <?php if($userData): ?>
+                    <li><a href="<?= $BASE_URL ?>newgame.php">Adicionar jogo</a></li>
+                    <li><a href="<?= $BASE_URL ?>dashboard.php">Meus jogos</a></li>
+                    <li><a href="<?= $BASE_URL ?>logout.php">Sair</a></li>
+                <?php else: ?>
+                    <li><a href="<?= $BASE_URL ?>auth.php">Entrar / Registrar</a></li>
+                <?php endif; ?>
             </ul>
         </div>
         <p>&copy; Leonardo M Carvalho</p>
