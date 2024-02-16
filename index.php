@@ -9,6 +9,9 @@
     $actionAndAdventuresGames = $gameDao->getGamesByCategory("Ação e Aventura");
     $sportsGames = $gameDao->getGamesByCategory("Esportes");
     $battleRoyaleGames = $gameDao->getGamesByCategory("Battle Royale");
+    $survivalHorrorGames = $gameDao->getGamesByCategory("Survival Horror");
+    $survivalHorrorGames = $gameDao->getGamesByCategory("Survival Horror");
+    $openWorldGames = $gameDao->getGamesByCategory("Mundo Aberto");
 
 ?>
     <div id="main-container" class="container-fluid">
@@ -53,6 +56,28 @@
                 <?php require("templates/game_card.php"); ?>
             <?php endforeach; ?>
             <?php if(count($battleRoyaleGames) === 0): ?>
+                <p class="empty-list">Ainda não há jogos cadastrados</p>
+            <?php endif; ?>
+        </div>
+
+        <h2 class="section-title">Survival Horror</h2>
+        <p class="section-description"> Veja os melhores jogos de Survival Horror </p>
+        <div class="games-container">
+            <?php foreach ($survivalHorrorGames as $game): ?>
+                <?php require("templates/game_card.php"); ?>
+            <?php endforeach; ?>
+            <?php if(count($survivalHorrorGames) === 0): ?>
+                <p class="empty-list">Ainda não há jogos cadastrados</p>
+            <?php endif; ?>
+        </div>
+
+        <h2 class="section-title">Mundo Aberto</h2>
+        <p class="section-description"> Veja os melhores jogos de Mundo Aberto </p>
+        <div class="games-container">
+            <?php foreach ($openWorldGames as $game): ?>
+                <?php require("templates/game_card.php"); ?>
+            <?php endforeach; ?>
+            <?php if(count($openWorldGames) === 0): ?>
                 <p class="empty-list">Ainda não há jogos cadastrados</p>
             <?php endif; ?>
         </div>
